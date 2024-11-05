@@ -132,7 +132,7 @@
             android:layout_marginStart="250dp"
             android:layout_marginTop="95dp"/>
 
-        
+
         <TextView
             android:id="@+id/food"
             android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
             android:textColor="@color/white"
             android:layout_marginStart="250dp"
             android:layout_marginTop="140dp"/>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
             android:layout_marginStart="250dp"
             android:layout_marginTop="185dp"/>
 
-            
+
 
     </androidx.cardview.widget.CardView>
 
