@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MyFItnessBuddy</string>
+    <string name="loading">Loading...</string>
+    <string name="myfitnessbuddy">MyFitnessBuddy</string>
+    <string name="summary">Summary</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="food">Food</string>
+    <string name="steps">Steps</string>
+    <string name="sleep">Sleep</string>
+    <string name="calories">Calories</string>
+    <string name="base_goal">Base Goal</string>
+    <string name="_2500">2500</string>
+    <string name="exercices">Exercices</string>
+    <string name="_0">0</string>
+</resources>

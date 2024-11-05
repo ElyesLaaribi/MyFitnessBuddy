@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1e272e"
+    android:padding="0dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/summary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/white"
+        />
+
+
+    <ImageButton
+        android:id="@+id/circular_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/profile"
+        android:background="@drawable/circular_button"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="400dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/textView"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="50dp"
+        app:cardBackgroundColor="#2f3542"
+        app:cardCornerRadius="12dp"
+        >
+
+        <ProgressBar
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:progressDrawable="@drawable/progress"
+            android:indeterminateOnly="false"
+            android:progress="60"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calories"
+            android:textStyle="bold"
+            android:textSize="27sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remaining = Goal - Food + Exercice"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="55dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_marginStart="83dp"
+            android:text="2500"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remaining"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="150dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/base_goal"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="75dp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/flag"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="90dp"
+            android:tint="@color/gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2500"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="95dp"/>
+
+        
+        <TextView
+            android:id="@+id/food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="120dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="140dp"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exercices"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="165dp"
+            android:textStyle="bold"/>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/calories"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="180dp"
+            android:tint="@color/orange" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="35dp"
+            android:src="@drawable/food"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="130dp"
+            android:tint="@color/blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_0"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="185dp"/>
+
+            
+
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#4a69bd"
+        app:tabTextColor="@color/white"
+        app:tabIndicatorColor="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dashboard"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/steps" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sleep" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+
+</RelativeLayout>
