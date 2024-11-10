@@ -19,6 +19,9 @@ dependencyResolutionManagement {
     }
 }
 
+
 rootProject.name = "MyFItnessBuddy"
 include(":app")
+
+
  
