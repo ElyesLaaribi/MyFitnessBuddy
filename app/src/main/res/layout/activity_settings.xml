@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1e272e"
+    android:padding="0dp">
+
+    <!-- Settings Title -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="15dp"
+        android:text="Profile"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/white" />
+
+    <!-- Profile Image Button -->
+    <ImageButton
+        android:id="@+id/circular_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/profile"
+        android:background="@drawable/circular_button"
+        android:scaleType="centerCrop"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- CardView for Form Inputs -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/progBarCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="50dp"
+        app:cardBackgroundColor="#2f3542"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your name"
+                android:textColor="@color/white"
+                android:textColorHint="#7f8c8d"
+                android:backgroundTint="@color/white" />
+
+            <!-- Height -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Height (cm)"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp" />
+
+            <EditText
+                android:id="@+id/editTextHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter your height"
+                android:textColor="@color/white"
+                android:textColorHint="#7f8c8d"
+                android:backgroundTint="@color/white" />
+
+            <!-- Weight -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight (kg)"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp" />
+
+            <EditText
+                android:id="@+id/editTextWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter your weight"
+                android:textColor="@color/white"
+                android:textColorHint="#7f8c8d"
+                android:backgroundTint="@color/white" />
+
+            <!-- Gender -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp" />
+
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white" />
+
+
+            <!-- Calories Goal -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories Goal"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp" />
+
+            <EditText
+                android:id="@+id/editTextCaloriesGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter your calorie goal"
+                android:textColor="@color/white"
+                android:textColorHint="#7f8c8d"
+                android:backgroundTint="@color/white" />
+
+            <!-- Validate Button -->
+            <Button
+                android:id="@+id/btnValidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Validate"
+                android:textColor="@color/white"
+                android:backgroundTint="#0fbcf9" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
