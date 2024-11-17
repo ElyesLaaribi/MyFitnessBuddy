@@ -87,15 +87,17 @@
             android:textColor="@color/white"
             android:layout_marginStart="15dp"
             android:layout_marginTop="55dp"/>
+
         <TextView
+            android:id="@+id/caloriesGoalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
-            android:layout_marginStart="83dp"
-            android:text="2500"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="130dp"/>/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

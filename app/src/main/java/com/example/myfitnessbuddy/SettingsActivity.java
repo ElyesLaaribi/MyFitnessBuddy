@@ -1,10 +1,13 @@
 package com.example.myfitnessbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -36,17 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerGender.setAdapter(adapter);
 
 
-        btnValidate.setOnClickListener(view -> {
-            String name = editTextName.getText().toString();
-            String height = editTextHeight.getText().toString();
-            String weight = editTextWeight.getText().toString();
-            String gender = spinnerGender.getSelectedItem().toString();
-            String dob = editTextDOB.getText().toString();
-            String caloriesGoal = editTextCaloriesGoal.getText().toString();
 
-
-            System.out.println("Name: " + name);
-            System.out.println("Gender: " + gender);
-        });
     }
 }
