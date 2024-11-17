@@ -18,16 +18,15 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // Initialize fields
+
         editTextName = findViewById(R.id.editTextName);
         editTextHeight = findViewById(R.id.editTextHeight);
         editTextWeight = findViewById(R.id.editTextWeight);
-
         editTextCaloriesGoal = findViewById(R.id.editTextCaloriesGoal);
         spinnerGender = findViewById(R.id.spinnerGender);
         btnValidate = findViewById(R.id.btnValidate);
 
-        // Set up the Gender Spinner
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.gender_options,
@@ -36,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(adapter);
 
-        // Handle button click for form submission (just for example)
+
         btnValidate.setOnClickListener(view -> {
             String name = editTextName.getText().toString();
             String height = editTextHeight.getText().toString();
@@ -45,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
             String dob = editTextDOB.getText().toString();
             String caloriesGoal = editTextCaloriesGoal.getText().toString();
 
-            // Print to check
+
             System.out.println("Name: " + name);
             System.out.println("Gender: " + gender);
         });

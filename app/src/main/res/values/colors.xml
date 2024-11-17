@@ -5,4 +5,6 @@
     <color name="orange">#ff793f</color>
     <color name="blue">#0652DD</color>
     <color name="gray">#b2bec3</color>
+    <color name="purple_200">#BB86FC</color>
+    <color name="teal_200">#03DAC5</color>
 </resources>

@@ -2,6 +2,12 @@ package com.example.myfitnessbuddy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,13 +19,30 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.tabs.TabLayout;
 
 public class ExercisesActivity extends AppCompatActivity {
-    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_exercises);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<Exercise> exerciseList = new ArrayList<>();
+        exerciseList.add(new Exercise("Bench Press"));
+        exerciseList.add(new Exercise("Deadlift"));
+        exerciseList.add(new Exercise("Squats"));
+        exerciseList.add(new Exercise("Pull Ups"));
+        exerciseList.add(new Exercise("Push Ups"));
+        exerciseList.add(new Exercise("Lunges"));
+        exerciseList.add(new Exercise("Bicep Curl"));
+        exerciseList.add(new Exercise("Tricep Dips"));
+        exerciseList.add(new Exercise("Plank"));
+        exerciseList.add(new Exercise("Burpees"));
+        // Set up adapter
+        ExerciseAdapter adapter = new ExerciseAdapter(exerciseList, exerciseName ->
+                Toast.makeText(this, "You clicked: " + exerciseName, Toast.LENGTH_SHORT).show());
+        recyclerView.setAdapter(adapter);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -27,7 +50,7 @@ public class ExercisesActivity extends AppCompatActivity {
         });
 
         //get data
-        tabLayout = findViewById(R.id.tabLayout);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
         int selectedTabPosition = getIntent().getIntExtra("selected_tab_position", 0);
         tabLayout.getTabAt(selectedTabPosition).select();
 
