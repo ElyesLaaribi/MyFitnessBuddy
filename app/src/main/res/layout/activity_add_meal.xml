@@ -1,0 +1,49 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#1e272e">
+
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Meal"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+
+
+    <EditText
+        android:id="@+id/mealName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Meal Name"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/mealCalories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Calories"
+        android:inputType="number"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/saveMealButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:backgroundTint="#4a69bd"
+        android:textColor="@color/white" />
+</LinearLayout>
