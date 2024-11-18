@@ -92,10 +92,9 @@
             android:id="@+id/caloriesGoalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:textSize="18sp"
             android:textColor="#FFFFFF"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="85dp"
             android:layout_marginTop="130dp"/>/>
 
         <TextView
@@ -128,6 +127,7 @@
             android:tint="@color/gray" />
 
         <TextView
+            android:id="@+id/BaseGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_2500"
@@ -391,4 +391,3 @@
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
-

@@ -1,9 +1,12 @@
 package com.example.myfitnessbuddy;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,6 +19,9 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView caloriesGoalTextView;
+    private TextView BaseGoalTextView;
+    private SQLiteHelper dbHelper;
     private TabLayout tabLayout;
     private ImageButton myImageButton;
 
@@ -24,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        caloriesGoalTextView = findViewById(R.id.caloriesGoalTextView);
+        BaseGoalTextView = findViewById(R.id.BaseGoal);
+
+        // Initialize the database helper
+        dbHelper = new SQLiteHelper(this);
+
+        // Load calorie goal and update the UI
+        loadCalorieGoal();
 
         // Set up edge-to-edge window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -35,14 +50,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         myImageButton = findViewById(R.id.circular_button);
 
-        myImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent imageButtonIntent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(imageButtonIntent);
-            }
+        // Handle ImageButton click to open SettingsActivity
+        myImageButton.setOnClickListener(v -> {
+            Intent imageButtonIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(imageButtonIntent);
         });
 
+        // Handle tab selection to switch between activities
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -81,5 +95,23 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(@NonNull TabLayout.Tab tab) {
             }
         });
+    }
+
+    /**
+     * Method to load the calorie goal from the SQLite database and update the TextView.
+     */
+    private void loadCalorieGoal() {
+        Cursor cursor = dbHelper.getCalorieData();
+
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range")
+            int baseGoal = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_BASE_GOAL));
+            caloriesGoalTextView.setText(String.valueOf(baseGoal));
+            BaseGoalTextView.setText(String.valueOf(baseGoal));
+        } else {
+            caloriesGoalTextView.setText("Not Set"); // Default text if no data is found
+        }
+
+        cursor.close();
     }
 }
