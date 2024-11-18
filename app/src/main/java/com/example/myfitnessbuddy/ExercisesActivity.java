@@ -3,44 +3,58 @@ package com.example.myfitnessbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExercisesActivity extends AppCompatActivity {
+    private SQLiteHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_exercises);
+
+        dbHelper = new SQLiteHelper(this); // Initialize SQLiteHelper
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Add exercises with calories burned and time consumed (5 minutes for each)
         List<Exercise> exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Bench Press"));
-        exerciseList.add(new Exercise("Deadlift"));
-        exerciseList.add(new Exercise("Squats"));
-        exerciseList.add(new Exercise("Pull Ups"));
-        exerciseList.add(new Exercise("Push Ups"));
-        exerciseList.add(new Exercise("Lunges"));
-        exerciseList.add(new Exercise("Bicep Curl"));
-        exerciseList.add(new Exercise("Tricep Dips"));
-        exerciseList.add(new Exercise("Plank"));
-        exerciseList.add(new Exercise("Burpees"));
+        exerciseList.add(new Exercise("Bench Press", 100, 5));  // 5 minutes
+        exerciseList.add(new Exercise("Deadlift", 100, 5));     // 5 minutes
+        exerciseList.add(new Exercise("Squats", 100, 5));       // 5 minutes
+        exerciseList.add(new Exercise("Pull Ups", 100, 5));     // 5 minutes
+        exerciseList.add(new Exercise("Push Ups", 100, 5));     // 5 minutes
+        exerciseList.add(new Exercise("Lunges", 100, 5));       // 5 minutes
+        exerciseList.add(new Exercise("Bicep Curl", 100, 5));   // 5 minutes
+        exerciseList.add(new Exercise("Tricep Dips", 100, 5));  // 5 minutes
+        exerciseList.add(new Exercise("Plank", 100, 5));        // 5 minutes
+        exerciseList.add(new Exercise("Burpees", 100, 5));      // 5 minutes
+
         // Set up adapter
-        ExerciseAdapter adapter = new ExerciseAdapter(exerciseList, exerciseName ->
-                Toast.makeText(this, "You clicked: " + exerciseName, Toast.LENGTH_SHORT).show());
+        ExerciseAdapter adapter = new ExerciseAdapter(exerciseList, exerciseName -> {
+            for (Exercise exercise : exerciseList) {
+                if (exercise.getName().equals(exerciseName)) {
+                    // Save calories burned and time consumed to SQLite
+                    dbHelper.insertExercise(exercise.getName(), exercise.getCaloriesBurned(), exercise.getTimeConsumed());
+                    Toast.makeText(this, String.format("Calories burned: %d, Time consumed: %d mins", exercise.getCaloriesBurned(), exercise.getTimeConsumed()), Toast.LENGTH_SHORT).show();
+                    break;
+                }
+            }
+        });
+
         recyclerView.setAdapter(adapter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -49,7 +63,6 @@ public class ExercisesActivity extends AppCompatActivity {
             return insets;
         });
 
-        //get data
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         int selectedTabPosition = getIntent().getIntExtra("selected_tab_position", 0);
         tabLayout.getTabAt(selectedTabPosition).select();
@@ -58,7 +71,6 @@ public class ExercisesActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int selectedTabPosition = tab.getPosition();
-                // Pass the selected tab position to the next activity
                 Intent intent = null;
                 switch (selectedTabPosition) {
                     case 0:
@@ -82,6 +94,8 @@ public class ExercisesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
+
+            @Override
             public void onTabUnselected(@NonNull TabLayout.Tab tab) {
             }
 

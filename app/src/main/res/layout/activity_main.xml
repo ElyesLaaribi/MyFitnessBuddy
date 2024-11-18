@@ -10,7 +10,6 @@
     android:padding="0dp">
 
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -151,7 +150,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
             android:textSize="17sp"
             android:textColor="@color/white"
             android:layout_marginStart="250dp"
@@ -182,6 +180,7 @@
             app:tint="@color/blue" />
 
         <TextView
+            android:id="@+id/caloriesBurnedTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0"
@@ -275,9 +274,9 @@
             app:tint="@color/orange" />
 
         <TextView
+            android:id="@+id/caloriesBurnedTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4731"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -293,9 +292,9 @@
             />
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"

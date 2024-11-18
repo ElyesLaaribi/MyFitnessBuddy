@@ -20,7 +20,9 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     private TextView caloriesGoalTextView;
+    private TextView CaloriesGoalTextView2;
     private TextView BaseGoalTextView;
+    private TextView timeTextView;  // Declare the TextView for time
     private SQLiteHelper dbHelper;
     private TabLayout tabLayout;
     private ImageButton myImageButton;
@@ -31,32 +33,36 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Initialize views
         caloriesGoalTextView = findViewById(R.id.caloriesGoalTextView);
+        CaloriesGoalTextView2 = findViewById(R.id.caloriesBurnedTextView2);
         BaseGoalTextView = findViewById(R.id.BaseGoal);
-
-        // Initialize the database helper
+        timeTextView = findViewById(R.id.time);  // Initialize the TextView for time
         dbHelper = new SQLiteHelper(this);
 
-        // Load calorie goal and update the UI
+        // Load initial calorie goal and time data
         loadCalorieGoal();
+        loadTotalCaloriesBurned();
+        loadTotalTimeConsumed();  // Load total time consumed
 
-        // Set up edge-to-edge window insets
+        // Handle window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Initialize tab layout and image button
         tabLayout = findViewById(R.id.tabLayout);
         myImageButton = findViewById(R.id.circular_button);
 
-        // Handle ImageButton click to open SettingsActivity
+        // Handle image button click to navigate to SettingsActivity
         myImageButton.setOnClickListener(v -> {
             Intent imageButtonIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(imageButtonIntent);
         });
 
-        // Handle tab selection to switch between activities
+        // Handle tab layout navigation
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -97,9 +103,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Method to load the calorie goal from the SQLite database and update the TextView.
-     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadCalorieGoal();
+        loadTotalCaloriesBurned();
+        loadTotalTimeConsumed();  // Reload total time consumed
+    }
+
     private void loadCalorieGoal() {
         Cursor cursor = dbHelper.getCalorieData();
 
@@ -107,11 +118,30 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("Range")
             int baseGoal = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_BASE_GOAL));
             caloriesGoalTextView.setText(String.valueOf(baseGoal));
+            CaloriesGoalTextView2.setText(String.valueOf(baseGoal));
             BaseGoalTextView.setText(String.valueOf(baseGoal));
         } else {
-            caloriesGoalTextView.setText("Not Set"); // Default text if no data is found
+            caloriesGoalTextView.setText("Not Set");
+            CaloriesGoalTextView2.setText("Not Set");
+            BaseGoalTextView.setText("Not Set");
         }
 
         cursor.close();
+    }
+
+    private void loadTotalCaloriesBurned() {
+        int totalCaloriesBurned = dbHelper.getTotalCaloriesBurned();
+
+        TextView caloriesBurnedTextView = findViewById(R.id.caloriesBurnedTextView);
+        caloriesBurnedTextView.setText(String.valueOf(totalCaloriesBurned));
+
+        TextView caloriesBurnedTextView2 = findViewById(R.id.caloriesBurnedTextView2);
+        caloriesBurnedTextView2.setText(String.valueOf(totalCaloriesBurned));
+    }
+
+    private void loadTotalTimeConsumed() {
+        int totalTimeConsumed = dbHelper.getTotalTimeConsumed();  // Get total time consumed
+
+        timeTextView.setText(String.valueOf(totalTimeConsumed) + " mins");  // Set the time in the TextView
     }
 }
