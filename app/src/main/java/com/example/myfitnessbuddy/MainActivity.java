@@ -113,16 +113,25 @@ public class MainActivity extends AppCompatActivity {
         // Reload total time consumed
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadCalorieGoal() {
         Cursor cursor = dbHelper.getCalorieData();
 
         if (cursor.moveToFirst()) {
             @SuppressLint("Range")
             int baseGoal = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_BASE_GOAL));
-            caloriesGoalTextView.setText(String.valueOf(baseGoal));
+            int totalFoodCalories = dbHelper.getTotalFoodCalories();
+            int totalCaloriesBurned = dbHelper.getTotalCaloriesBurned();
+            int remainingCalories = baseGoal - totalFoodCalories +  totalCaloriesBurned;
+
+            // Update the TextView with remaining calories
+            caloriesGoalTextView.setText(String.valueOf(remainingCalories));
+
+            // Optionally, update other TextViews
             CaloriesGoalTextView2.setText(String.valueOf(baseGoal));
             BaseGoalTextView.setText(String.valueOf(baseGoal));
         } else {
+            // Default values if no data exists
             caloriesGoalTextView.setText("0 Kcal");
             CaloriesGoalTextView2.setText("0 Kcal");
             BaseGoalTextView.setText("0 Kcal");
@@ -130,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         cursor.close();
     }
+
 
     private void loadTotalCaloriesBurned() {
         int totalCaloriesBurned = dbHelper.getTotalCaloriesBurned();

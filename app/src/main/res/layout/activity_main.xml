@@ -94,12 +94,12 @@
             android:textSize="18sp"
             android:textColor="#FFFFFF"
             android:layout_marginStart="85dp"
-            android:layout_marginTop="130dp"/>/>
+            android:layout_marginTop="130dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remaining"
+            android:text="@string/remaining"
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/white"
