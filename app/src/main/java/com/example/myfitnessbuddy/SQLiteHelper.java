@@ -88,6 +88,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // Add food calories
+    public void addFoodCalories(int calories) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Update the food column in the calorie_data table
+        db.execSQL("UPDATE " + TABLE_CALORIES + " SET " + COLUMN_FOOD + " = " +
+                COLUMN_FOOD + " + " + calories);
+        db.close();
+    }
+
     // Retrieve calorie data
     public Cursor getCalorieData() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -128,4 +138,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + TABLE_EXERCISES);
         db.close();
     }
+
+    // Add the method to get total food calories
+    @SuppressLint("Range")
+    public int getTotalFoodCalories() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(" + COLUMN_FOOD + ") AS total FROM " + TABLE_CALORIES, null);
+        int totalCalories = 0;
+        if (cursor.moveToFirst()) {
+            totalCalories = cursor.getInt(cursor.getColumnIndex("total"));
+        }
+        cursor.close();
+        db.close();
+        return totalCalories;
+    }
+
 }

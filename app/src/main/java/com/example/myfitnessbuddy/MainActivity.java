@@ -108,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         loadCalorieGoal();
         loadTotalCaloriesBurned();
-        loadTotalTimeConsumed();  // Reload total time consumed
+        loadTotalTimeConsumed();
+        loadTotalFoodCalories();
+        // Reload total time consumed
     }
 
     private void loadCalorieGoal() {
@@ -121,9 +123,9 @@ public class MainActivity extends AppCompatActivity {
             CaloriesGoalTextView2.setText(String.valueOf(baseGoal));
             BaseGoalTextView.setText(String.valueOf(baseGoal));
         } else {
-            caloriesGoalTextView.setText("Not Set");
-            CaloriesGoalTextView2.setText("Not Set");
-            BaseGoalTextView.setText("Not Set");
+            caloriesGoalTextView.setText("0 Kcal");
+            CaloriesGoalTextView2.setText("0 Kcal");
+            BaseGoalTextView.setText("0 Kcal");
         }
 
         cursor.close();
@@ -139,9 +141,18 @@ public class MainActivity extends AppCompatActivity {
         caloriesBurnedTextView2.setText(String.valueOf(totalCaloriesBurned));
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadTotalTimeConsumed() {
         int totalTimeConsumed = dbHelper.getTotalTimeConsumed();  // Get total time consumed
 
-        timeTextView.setText(String.valueOf(totalTimeConsumed) + " mins");  // Set the time in the TextView
+        timeTextView.setText(totalTimeConsumed + " mins");  // Set the time in the TextView
     }
+
+    @SuppressLint("SetTextI18n")
+    private void loadTotalFoodCalories() {
+        int totalFoodCalories = dbHelper.getTotalFoodCalories();
+        TextView foodCaloriesTextView = findViewById(R.id.foodCaloriesTextView); // Link this to your layout
+        foodCaloriesTextView.setText(totalFoodCalories + " Kcal");
+    }
+
 }
