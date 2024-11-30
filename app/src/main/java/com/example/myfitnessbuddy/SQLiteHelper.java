@@ -58,24 +58,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     // Insert or update calorie goal
-    public void insertOrUpdateCalorieGoal(int baseGoal) {
+    public void insertOrUpdateCalorieGoal(int calorieGoal) {
         SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BASE_GOAL, calorieGoal);  // Insert or update calorie goal
 
-        // Check if data exists
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CALORIES, null);
-        if (cursor.moveToFirst()) {
-            ContentValues values = new ContentValues();
-            values.put(COLUMN_BASE_GOAL, baseGoal);
-            db.update(TABLE_CALORIES, values, COLUMN_ID + " = ?", new String[]{"1"});
-        } else {
-            ContentValues values = new ContentValues();
-            values.put(COLUMN_BASE_GOAL, baseGoal);
-            values.put(COLUMN_FOOD, 0); // Default food value
-            values.put(COLUMN_EXERCISE, 0); // Default exercise value
+        // Check if base goal already exists
+        int rowsAffected = db.update(TABLE_CALORIES, values, null, null);
+        if (rowsAffected == 0) {
+            // If no rows were updated, insert the value
             db.insert(TABLE_CALORIES, null, values);
         }
-        cursor.close();
+        db.close();
     }
+
 
     // Insert exercise with calories burned and time consumed
     public void insertExercise(String name, int caloriesBurned, int timeConsumed) {
@@ -152,5 +148,28 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.close();
         return totalCalories;
     }
+
+    public void resetDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            // Clear both tables
+            db.execSQL("DELETE FROM " + TABLE_CALORIES);
+            db.execSQL("DELETE FROM " + TABLE_EXERCISES);
+
+            // Remove the default calorie data
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_BASE_GOAL, 0); // Set to 0 initially to require user input
+            values.put(COLUMN_FOOD, 0);      // Default food calories
+            values.put(COLUMN_EXERCISE, 0);  // Default exercise calories
+            db.insert(TABLE_CALORIES, null, values);
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the error to debug
+        } finally {
+            db.close(); // Always close the database
+        }
+    }
+
+
+
 
 }

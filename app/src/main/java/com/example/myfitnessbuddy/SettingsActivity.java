@@ -53,5 +53,6 @@ public class SettingsActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter a valid calorie goal.", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
