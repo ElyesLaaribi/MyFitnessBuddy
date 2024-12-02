@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView caloriesGoalTextView;
     private TextView CaloriesGoalTextView2;
     private TextView BaseGoalTextView;
-    private TextView timeTextView;  // Declare the TextView for time
+    private TextView timeTextView;
     private SQLiteHelper dbHelper;
     private TabLayout tabLayout;
     private ImageButton myImageButton;
@@ -194,7 +194,4 @@ public class MainActivity extends AppCompatActivity {
         TextView foodCaloriesTextView = findViewById(R.id.foodCaloriesTextView); // Link this to your layout
         foodCaloriesTextView.setText(totalFoodCalories + " Kcal");
     }
-
-
-
 }
